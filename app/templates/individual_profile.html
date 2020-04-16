@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block main %} 
+    <div class="card">
+        <div class="d-flex flex-row">
+            <img class="p-2 profile-pic" src="{{ url_for('static', filename='images/'+user.picture) }}"></img>
+        
+            <div class="p-2 bio">
+                <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+                <div class="profile-stats">
+                    <i class="far fa-envelope"></i>
+                    {{ user.email }}
+                </div>
+                <div class="profile-stats">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{ user.location }}
+                </div>
+                <div class="profile-stats">
+                    <i class="far fa-calendar-alt"></i>
+                    Joined on {{ user.timestamp }}
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="card-body">
+            <h3>About Me</h3>
+            <p>{{ user.biography }}</p>
+        </div>
+        <div class="card-btns">
+            <a href="#" class="button col-md-4 hover accent">Send Message</a>
+            <a href="#" class="button col-md-4 hover primary">Follow</a>
+        </div>
+    </div>
+{% endblock %}

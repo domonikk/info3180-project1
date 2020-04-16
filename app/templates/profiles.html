@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+  <div class=" top col-md-8 mx-auto">
+
+    <h2>Profiles</h2>
+  
+    {% include 'flash_messages.html' %}
+    
+    {% for profile in user_profiles %}
+        <div class="profile-container bg-white blue-border-top rounded d-flex p-3 mb-4">
+          <div class="profile-img col-md-3">
+            <img src="{{url_for('static', filename='images/' + profile.picture)}}" class="card-img" alt="...">
+          </div>
+          <div class="profile-info d-flex flex-column justify-content-center col-md-6">
+            <p class="font-weight-bold text-capitalize">
+              {{ profile.firstname }}  {{ profile.lastname  }}
+            </p>
+            <p class="text-muted text-small">
+              <i class="far fa-user"></i> 
+              {% if profile.gender == 'm' %}
+                  Male
+              {% else %}
+                  Female
+              {% endif %}
+            </p>
+            <p class="text-muted text-small"><i class="fas fa-map-marker-alt"></i> {{ profile.location }}</p>
+          </div>
+          <div class="view-profile col-md-3 d-flex align-items-center text-wrap">
+            <a href="{{ url_for('show_profile', userid=profile.id)}}" 
+            class="btn btn-primary font-weight-bold rounded btn btn-green btn-sm px-4 col-md-12">
+              View Profile
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+  </div>
+{% endblock %}
